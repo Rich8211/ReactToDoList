@@ -1,23 +1,30 @@
-import logo from './logo.svg';
+import React, { useState, useEffect, useReducer } from 'react'
+import { reducer } from './reducer/reducer'
 import './App.css';
+import { ItemContext } from './context/Context';
+import ToDoList from './components/toDoList';
+
 
 function App() {
+
+  const [toDoItems, setToDoItems] = useState([]);
+  
+  useEffect(() => {
+    if (localStorage.getItem('todos') !== null) 
+      setToDoItems(JSON.parse(localStorage.getItem('todos'))); 
+  },[])
+
+  const [items,dispatch] = useReducer(reducer, 
+    {items: toDoItems});
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header>
+            <h1>To Do's</h1>
       </header>
+      <ItemContext.Provider value={items, dispatch, reducer}>
+        <ToDoList />
+      </ItemContext.Provider>
     </div>
   );
 }

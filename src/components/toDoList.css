@@ -1,0 +1,81 @@
+form {
+    min-height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+form input, form button {
+    padding: 0.5rem;
+    height: 2rem;
+    font-size: 1rem;
+    border: none;
+    background: #fff;
+}
+
+form button {
+    color: #d88771;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+form button:hover {
+    background: #d88771;
+    color: white;
+}
+
+.todo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.todo-list {
+    min-width: 25%;
+    list-style: none;
+}
+
+
+
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    border: none;
+
+}
+
+.select {
+    padding-left: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+select {
+    
+    height: 2rem;
+    color: #ff6f47;
+    width: 10rem;
+    cursor: pointer;
+    
+}
+
+.select::after {
+    content: "\25BC";
+    height: 2rem;
+    position: absolute;
+    background: #ff6f47;
+    top: 0;
+    right: 0;
+    padding: 0 8px;
+    pointer-events: none;
+    transition: all 0.3 ease;
+}
+
+.select:hover::after {
+    background: white;
+    color: #ff6f47
+}
