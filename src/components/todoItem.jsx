@@ -1,28 +1,26 @@
-import React, {useState, useContext} from 'react'
-import { ItemContext } from '../context/Context'
+import React, {useState} from 'react';
+import './todoItem.css';
 
-const ToDoItem = ({item, filter, index}) => {
+const ToDoItem = ({item, filter, index, handleDelete}) => {
 
     const [status, setStatus] = useState('not-complete')
 
-    const {items, dispatch} = useContext(ItemContext);
-
-    const handleDelete = () => {
-        dispatch({type: 'DELETE_ITEM', payload: index});
-        localStorage.setItem('todos',JSON.stringify(items));
+    const changeStatus = (e) => {
+        e.preventDefault();
+        setStatus(status === 'not-complete' ? 'complete': 'not-complete')
     }
 
     return (
         <>
             {
                 filter === 'all' ? 
-                <div className="todo">
+                <div className={status === 'complete' ? 'todo complete' : 'todo'}>
                     <li className="todo-item">
                         {item}
                     </li>
                     <button 
-                        onClick={() => setStatus(status === 'not-complete' ? 'complete': 'not-complete')}
-                        className={status === 'complete' ? 'complete-btn complete' : 'complete-btn'}>
+                        onClick={changeStatus}
+                        className={'complete-btn'}>
                         <i className="fa fa-check"/>
                     </button>
                     <button className="trash-btn" onClick={handleDelete}>
